@@ -1,577 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV to Gulf - Transform Your Resume for Middle East Jobs</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            color: #333;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-            color: white;
-        }
-        
-        .header h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-        
-        .header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-        
-        .main-card {
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            margin-bottom: 30px;
-        }
-        
-        .upload-section {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        
-        .upload-area {
-            border: 3px dashed #667eea;
-            border-radius: 15px;
-            padding: 60px 20px;
-            background: #f8f9ff;
-            margin-bottom: 30px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        
-        .upload-area:hover {
-            border-color: #764ba2;
-            background: #f0f2ff;
-        }
-        
-        .upload-area.dragover {
-            border-color: #28a745;
-            background: #f0fff0;
-        }
-        
-        .upload-icon {
-            font-size: 4rem;
-            color: #667eea;
-            margin-bottom: 20px;
-        }
-        
-        .upload-text h3 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            color: #333;
-        }
-        
-        .upload-text p {
-            color: #666;
-            font-size: 1rem;
-        }
-        
-        .file-input {
-            display: none;
-        }
-        
-        .btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 25px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin: 10px;
-        }
-        
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
-        }
-        
-        .voice-section {
-            background: #f8f9ff;
-            border-radius: 15px;
-            padding: 30px;
-            margin: 20px 0;
-            text-align: center;
-        }
-        
-        .voice-btn {
-            background: #28a745;
-            font-size: 1.2rem;
-            padding: 20px 40px;
-        }
-        
-        .voice-btn.recording {
-            background: #dc3545;
-            animation: pulse 1s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        
-        .form-section {
-            background: #fff;
-            border-radius: 15px;
-            padding: 30px;
-            margin: 20px 0;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: #333;
-        }
-        
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-        
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-        
-        .result-section {
-            display: none;
-            background: #f8f9ff;
-            border-radius: 15px;
-            padding: 30px;
-            margin: 20px 0;
-        }
-        
-        .before-after {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin: 20px 0;
-        }
-        
-        .resume-preview {
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            padding: 20px;
-            min-height: 300px;
-        }
-        
-        .resume-preview h4 {
-            background: #667eea;
-            color: white;
-            padding: 10px;
-            margin: -20px -20px 20px -20px;
-            border-radius: 10px 10px 0 0;
-        }
-        
-        .price-section {
-            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
-            color: white;
-            text-align: center;
-            padding: 30px;
-            border-radius: 15px;
-            margin: 20px 0;
-        }
-        
-        .price {
-            font-size: 3rem;
-            font-weight: bold;
-            margin: 10px 0;
-        }
-        
-        .payment-btn {
-            background: white;
-            color: #28a745;
-            font-size: 1.3rem;
-            padding: 20px 50px;
-            font-weight: bold;
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin: 40px 0;
-        }
-        
-        .feature-card {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-        
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2rem;
-            }
-            
-            .before-after {
-                grid-template-columns: 1fr;
-            }
-            
-            .main-card {
-                padding: 20px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gulf Resume Builder</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Roboto", sans-serif;
+      background: #f9f9f9;
+      color: #333;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 500px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+    h1 {
+      text-align: center;
+      color: #007b7f;
+      margin-bottom: 10px;
+    }
+    p {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .upload-section {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    input[type="file"] {
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    button {
+      padding: 12px;
+      background: #007b7f;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #005f61;
+    }
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 12px;
+      color: #777;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>🚀 CV to Gulf</h1>
-            <p>Transform Your Resume for Middle East Jobs with AI Magic</p>
-        </div>
-        
-        <div class="main-card">
-            <!-- Upload Section -->
-            <div class="upload-section">
-                <div class="upload-area" id="uploadArea">
-                    <div class="upload-icon">📄</div>
-                    <div class="upload-text">
-                        <h3>Upload Your Current Resume</h3>
-                        <p>Any format: PDF, Word, Photo, or even handwritten!</p>
-                    </div>
-                    <input type="file" id="fileInput" class="file-input" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png">
-                    <button class="btn" onclick="document.getElementById('fileInput').click()">
-                        Choose File
-                    </button>
-                </div>
-            </div>
-            
-            <!-- Voice Section -->
-            <div class="voice-section">
-                <h3>🎤 Or Record Your Details</h3>
-                <p>Speak in any language - Hindi, Urdu, Bengali, English!</p>
-                <button class="btn voice-btn" id="voiceBtn" onclick="toggleRecording()">
-                    Start Recording
-                </button>
-                <div id="voiceResult" style="margin-top: 20px; display: none;"></div>
-            </div>
-            
-            <!-- Form Section -->
-            <div class="form-section">
-                <h3>📝 Fill Basic Details (AI will enhance everything!)</h3>
-                <div class="form-group">
-                    <label>Full Name</label>
-                    <input type="text" id="fullName" placeholder="Enter your full name">
-                </div>
-                
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                    <div class="form-group">
-                        <label>Age</label>
-                        <input type="number" id="age" placeholder="25">
-                    </div>
-                    <div class="form-group">
-                        <label>Country</label>
-                        <select id="country">
-                            <option value="">Select Country</option>
-                            <option value="india">India</option>
-                            <option value="bangladesh">Bangladesh</option>
-                            <option value="pakistan">Pakistan</option>
-                            <option value="nepal">Nepal</option>
-                            <option value="sri-lanka">Sri Lanka</option>
-                        </select>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label>Job Type Looking For</label>
-                    <select id="jobType">
-                        <option value="">Select Job Type</option>
-                        <option value="construction">Construction Worker</option>
-                        <option value="driver">Driver</option>
-                        <option value="housekeeping">Housekeeping</option>
-                        <option value="factory">Factory Worker</option>
-                        <option value="security">Security Guard</option>
-                        <option value="restaurant">Restaurant Work</option>
-                        <option value="delivery">Delivery</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label>Work Experience</label>
-                    <textarea id="experience" rows="3" placeholder="Tell us about your previous jobs..."></textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label>Skills</label>
-                    <input type="text" id="skills" placeholder="e.g., Heavy machinery, English speaking, etc.">
-                </div>
-                
-                <button class="btn" onclick="generateResume()" style="width: 100%; font-size: 1.2rem; padding: 20px;">
-                    ✨ Generate Professional Resume with AI
-                </button>
-            </div>
-            
-            <!-- Result Section -->
-            <div class="result-section" id="resultSection">
-                <h3>🎉 See the AI Magic!</h3>
-                <div class="before-after">
-                    <div class="resume-preview">
-                        <h4>❌ Your Old Resume</h4>
-                        <div id="oldResume">
-                            <p style="color: #666; font-style: italic;">Your uploaded resume will appear here...</p>
-                        </div>
-                    </div>
-                    <div class="resume-preview">
-                        <h4>✅ AI Enhanced Resume</h4>
-                        <div id="newResume">
-                            <div style="border-left: 4px solid #28a745; padding-left: 15px;">
-                                <h2 style="color: #333; margin-bottom: 10px;" id="enhancedName">MOHAMMED HASSAN ALI</h2>
-                                <p style="color: #666; margin-bottom: 5px;">📱 +91-9876543210 | 📧 hassan.ali@email.com</p>
-                                <p style="color: #666; margin-bottom: 15px;">🏠 Mumbai, India | Age: 28</p>
-                                
-                                <h3 style="color: #667eea; border-bottom: 2px solid #667eea; padding-bottom: 5px; margin: 15px 0 10px 0;">PROFESSIONAL OBJECTIVE</h3>
-                                <p style="line-height: 1.6; margin-bottom: 15px;">Experienced and dedicated construction professional seeking opportunities in the Gulf region. Proven track record in heavy machinery operation, site supervision, and team coordination. Committed to maintaining highest safety standards while delivering quality work.</p>
-                                
-                                <h3 style="color: #667eea; border-bottom: 2px solid #667eea; padding-bottom: 5px; margin: 15px 0 10px 0;">WORK EXPERIENCE</h3>
-                                <div style="margin-bottom: 15px;">
-                                    <h4 style="color: #333; margin-bottom: 5px;">Senior Construction Worker</h4>
-                                    <p style="color: #666; font-size: 0.9rem; margin-bottom: 5px;">ABC Construction Ltd. | 2020-2024</p>
-                                    <ul style="margin-left: 20px; line-height: 1.5;">
-                                        <li>Operated heavy machinery including excavators and bulldozers</li>
-                                        <li>Supervised team of 15+ workers on multiple projects</li>
-                                        <li>Maintained 100% safety record over 4 years</li>
-                                    </ul>
-                                </div>
-                                
-                                <h3 style="color: #667eea; border-bottom: 2px solid #667eea; padding-bottom: 5px; margin: 15px 0 10px 0;">KEY SKILLS</h3>
-                                <p style="line-height: 1.6;">• Heavy Machinery Operation • Site Safety Management • Team Leadership • Quality Control • English Communication • Physical Fitness • Problem Solving</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="price-section">
-                    <h3>Love Your New Professional Resume?</h3>
-                    <div class="price">Only $10</div>
-                    <p>Get your AI-enhanced resume + Submit to 50+ Gulf recruitment agencies!</p>
-                    <button class="btn payment-btn" onclick="processPayment()">
-                        💳 Pay $10 & Download Resume
-                    </button>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Features Section -->
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">🤖</div>
-                <h3>AI Enhancement</h3>
-                <p>Transform basic resumes into professional Gulf-standard CVs</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🌍</div>
-                <h3>Multi-Language</h3>
-                <p>Upload in any language, get professional English output</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🏢</div>
-                <h3>Agency Network</h3>
-                <p>Direct submission to 50+ verified recruitment agencies</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">💰</div>
-                <h3>Affordable</h3>
-                <p>Professional resume service for just $10 - accessible to everyone</p>
-            </div>
-        </div>
+  <div class="container">
+    <h1>Get Your Gulf-Ready Resume</h1>
+    <p>Upload your old resume or record your details.<br>We’ll create a professional resume for your Saudi/UAE job application.</p>
+    
+    <div class="upload-section">
+      <input type="file" name="resume" accept=".pdf,.doc,.docx,.jpg,.png" />
+      <button>Record My Details (Coming Soon)</button>
+      <button>Pay $10 & Create My Resume</button>
     </div>
+  </div>
 
-    <script>
-        let isRecording = false;
-        let mediaRecorder;
-        let audioChunks = [];
-
-        // File upload handling
-        const uploadArea = document.getElementById('uploadArea');
-        const fileInput = document.getElementById('fileInput');
-
-        uploadArea.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            uploadArea.classList.add('dragover');
-        });
-
-        uploadArea.addEventListener('dragleave', () => {
-            uploadArea.classList.remove('dragover');
-        });
-
-        uploadArea.addEventListener('drop', (e) => {
-            e.preventDefault();
-            uploadArea.classList.remove('dragover');
-            const files = e.dataTransfer.files;
-            if (files.length > 0) {
-                handleFileUpload(files[0]);
-            }
-        });
-
-        fileInput.addEventListener('change', (e) => {
-            if (e.target.files.length > 0) {
-                handleFileUpload(e.target.files[0]);
-            }
-        });
-
-        function handleFileUpload(file) {
-            const uploadText = document.querySelector('.upload-text');
-            uploadText.innerHTML = `
-                <h3>✅ File Uploaded: ${file.name}</h3>
-                <p>Ready to enhance with AI!</p>
-            `;
-            uploadArea.style.background = '#f0fff0';
-            uploadArea.style.borderColor = '#28a745';
-        }
-
-        // Voice recording
-        async function toggleRecording() {
-            const voiceBtn = document.getElementById('voiceBtn');
-            const voiceResult = document.getElementById('voiceResult');
-
-            if (!isRecording) {
-                try {
-                    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-                    mediaRecorder = new MediaRecorder(stream);
-                    
-                    mediaRecorder.ondataavailable = (event) => {
-                        audioChunks.push(event.data);
-                    };
-                    
-                    mediaRecorder.onstop = () => {
-                        const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
-                        audioChunks = [];
-                        voiceResult.innerHTML = '<p>✅ Voice recorded! AI will process this with your resume.</p>';
-                        voiceResult.style.display = 'block';
-                    };
-                    
-                    mediaRecorder.start();
-                    isRecording = true;
-                    voiceBtn.textContent = 'Stop Recording';
-                    voiceBtn.classList.add('recording');
-                } catch (error) {
-                    alert('Could not access microphone. Please check permissions.');
-                }
-            } else {
-                mediaRecorder.stop();
-                mediaRecorder.stream.getTracks().forEach(track => track.stop());
-                isRecording = false;
-                voiceBtn.textContent = 'Start Recording';
-                voiceBtn.classList.remove('recording');
-            }
-        }
-
-        // Generate resume
-        function generateResume() {
-            const name = document.getElementById('fullName').value;
-            const age = document.getElementById('age').value;
-            const country = document.getElementById('country').value;
-            const jobType = document.getElementById('jobType').value;
-            const experience = document.getElementById('experience').value;
-            const skills = document.getElementById('skills').value;
-
-            if (!name || !jobType) {
-                alert('Please fill at least your name and job type!');
-                return;
-            }
-
-            // Show loading effect
-            const btn = event.target;
-            btn.textContent = '🤖 AI is working its magic...';
-            btn.disabled = true;
-
-            // Simulate AI processing
-            setTimeout(() => {
-                // Update the enhanced resume with user data
-                document.getElementById('enhancedName').textContent = name.toUpperCase();
-                
-                // Show result section
-                document.getElementById('resultSection').style.display = 'block';
-                document.getElementById('resultSection').scrollIntoView({ behavior: 'smooth' });
-                
-                btn.textContent = '✨ Generate Professional Resume with AI';
-                btn.disabled = false;
-            }, 3000);
-        }
-
-        // Payment processing
-        function processPayment() {
-            alert('🚀 Payment processing will be integrated here!\n\nFor now, this demonstrates the complete user flow:\n1. Upload/Record\n2. See AI magic\n3. Pay $10\n4. Download + Agency submission');
-        }
-
-        // Animate elements on scroll
-        window.addEventListener('scroll', () => {
-            const elements = document.querySelectorAll('.feature-card');
-            elements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const elementVisible = 150;
-                
-                if (elementTop < window.innerHeight - elementVisible) {
-                    element.style.opacity = '1';
-                    element.style.transform = 'translateY(0)';
-                }
-            });
-        });
-
-        // Initialize animations
-        document.addEventListener('DOMContentLoaded', () => {
-            const featureCards = document.querySelectorAll('.feature-card');
-            featureCards.forEach(card => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                card.style.transition = 'all 0.6s ease';
-            });
-        });
-    </script>
+  <footer>
+    Contact us on WhatsApp | Privacy Policy
+  </footer>
 </body>
 </html>
